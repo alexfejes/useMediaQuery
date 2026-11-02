@@ -1,13 +1,8 @@
 import { navItems } from '../data'
 import Icon from './Icon'
 
-interface Props {
-  activeId: string
-  onSelect: (id: string) => void
-}
-
 // The bulky desktop sidebar: fixed 280px wide, full labels, plan card.
-export default function Sidebar({ activeId, onSelect }: Props) {
+export default function DesktopSidebar({ activeId, onSelect }) {
   return (
     <aside className="sidebar">
       <div className="brand">

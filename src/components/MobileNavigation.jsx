@@ -2,18 +2,13 @@ import { useEffect, useState } from 'react'
 import { navItems } from '../data'
 import Icon from './Icon'
 
-interface Props {
-  activeId: string
-  onSelect: (id: string) => void
-}
-
-// Mobile view: a slim top bar, with the nav tucked into a slide-out drawer.
-export default function MobileNav({ activeId, onSelect }: Props) {
+// Streamlined mobile view: a slim top bar, with the nav tucked into a slide-out drawer.
+export default function MobileNavigation({ activeId, onSelect }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     if (!open) return
-    const onKeyDown = (event: KeyboardEvent) => {
+    const onKeyDown = (event) => {
       if (event.key === 'Escape') setOpen(false)
     }
     window.addEventListener('keydown', onKeyDown)

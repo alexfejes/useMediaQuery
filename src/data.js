@@ -1,23 +1,4 @@
-export type IconName =
-  | 'grid'
-  | 'chart'
-  | 'users'
-  | 'box'
-  | 'settings'
-  | 'help'
-  | 'search'
-  | 'bell'
-  | 'menu'
-  | 'close'
-
-export interface NavItem {
-  id: string
-  label: string
-  icon: IconName
-  badge?: number
-}
-
-export const navItems: NavItem[] = [
+export const navItems = [
   { id: 'overview', label: 'Overview', icon: 'grid' },
   { id: 'analytics', label: 'Analytics', icon: 'chart' },
   { id: 'customers', label: 'Customers', icon: 'users', badge: 12 },
@@ -26,30 +7,14 @@ export const navItems: NavItem[] = [
   { id: 'help', label: 'Help Center', icon: 'help' },
 ]
 
-export interface Stat {
-  label: string
-  value: string
-  change: string
-  trend: 'up' | 'down'
-}
-
-export const stats: Stat[] = [
+export const stats = [
   { label: 'Revenue', value: '$48,290', change: '+12.4%', trend: 'up' },
   { label: 'Orders', value: '1,284', change: '+4.1%', trend: 'up' },
   { label: 'Active users', value: '9,402', change: '-1.8%', trend: 'down' },
   { label: 'Refund rate', value: '0.9%', change: '-0.3%', trend: 'up' },
 ]
 
-export interface Order {
-  id: string
-  customer: string
-  product: string
-  date: string
-  amount: string
-  status: 'Paid' | 'Pending' | 'Refunded'
-}
-
-export const orders: Order[] = [
+export const orders = [
   { id: '#10482', customer: 'Maya Okafor', product: 'Pro Plan (annual)', date: 'Nov 2', amount: '$1,188.00', status: 'Paid' },
   { id: '#10481', customer: 'Jonas Lindqvist', product: 'Team Seats x5', date: 'Nov 2', amount: '$245.00', status: 'Pending' },
   { id: '#10480', customer: 'Priya Raman', product: 'Starter Plan', date: 'Nov 1', amount: '$19.00', status: 'Paid' },

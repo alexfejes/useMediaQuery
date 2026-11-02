@@ -1,14 +1,9 @@
 import { orders, stats } from '../data'
 import Icon from './Icon'
 
-interface Props {
-  // How many stat cards sit side by side.
-  columns: number
-  // Compact mode swaps the wide toolbar and table for small-screen versions.
-  compact?: boolean
-}
-
-export default function DashboardContent({ columns, compact = false }: Props) {
+// columns: how many stat cards sit side by side.
+// compact: swaps the wide toolbar and table for small-screen versions.
+export default function DashboardContent({ columns, compact = false }) {
   return (
     <main className="content">
       <div className="toolbar">

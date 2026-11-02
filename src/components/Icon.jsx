@@ -1,6 +1,4 @@
-import type { IconName } from '../data'
-
-const paths: Record<IconName, string> = {
+const paths = {
   grid: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
   chart: 'M4 20V10M10 20V4M16 20v-7M22 20H2',
   users: 'M16 19v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1M9 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6M22 19v-1a4 4 0 0 0-3-3.87M16 4.13a3 3 0 0 1 0 5.74',
@@ -13,7 +11,7 @@ const paths: Record<IconName, string> = {
   close: 'M18 6 6 18M6 6l12 12',
 }
 
-export default function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
+export default function Icon({ name, size = 20 }) {
   return (
     <svg
       width={size}
