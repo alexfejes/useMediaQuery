@@ -15,9 +15,9 @@ export const stats = [
 ]
 
 export const orders = [
-  { id: '#10482', customer: 'Maya Okafor', product: 'Pro Plan (annual)', date: 'Nov 2', amount: '$1,188.00', status: 'Paid' },
-  { id: '#10481', customer: 'Jonas Lindqvist', product: 'Team Seats x5', date: 'Nov 2', amount: '$245.00', status: 'Pending' },
-  { id: '#10480', customer: 'Priya Raman', product: 'Starter Plan', date: 'Nov 1', amount: '$19.00', status: 'Paid' },
-  { id: '#10479', customer: 'Diego Alvarez', product: 'Pro Plan (monthly)', date: 'Oct 31', amount: '$99.00', status: 'Refunded' },
-  { id: '#10478', customer: 'Hana Sato', product: 'Enterprise Add-on', date: 'Oct 31', amount: '$2,400.00', status: 'Paid' },
+  { id: '#10482', customer: 'Customer A', product: 'Pro Plan (annual)', date: 'Nov 2', amount: '$1,188.00', status: 'Paid' },
+  { id: '#10481', customer: 'Customer B', product: 'Team Seats x5', date: 'Nov 2', amount: '$245.00', status: 'Pending' },
+  { id: '#10480', customer: 'Customer C', product: 'Starter Plan', date: 'Nov 1', amount: '$19.00', status: 'Paid' },
+  { id: '#10479', customer: 'Customer D', product: 'Pro Plan (monthly)', date: 'Oct 31', amount: '$99.00', status: 'Refunded' },
+  { id: '#10478', customer: 'Customer E', product: 'Enterprise Add-on', date: 'Oct 31', amount: '$2,400.00', status: 'Paid' },
 ]
