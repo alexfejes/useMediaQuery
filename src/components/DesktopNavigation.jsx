@@ -2,7 +2,7 @@ import { navItems } from '../data'
 import Icon from './Icon'
 
 // The bulky desktop sidebar: fixed 280px wide, full labels, plan card.
-export default function DesktopSidebar({ activeId, onSelect }) {
+export default function DesktopNavigation() {
   return (
     <aside className="sidebar">
       <div className="brand">
@@ -10,19 +10,13 @@ export default function DesktopSidebar({ activeId, onSelect }) {
         <span className="brand-name">Pulseboard</span>
       </div>
 
-      <nav className="sidebar-nav" aria-label="Main">
+      <nav className="sidebar-nav">
         {navItems.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            className={`nav-link${item.id === activeId ? ' is-active' : ''}`}
-            aria-current={item.id === activeId ? 'page' : undefined}
-            onClick={() => onSelect(item.id)}
-          >
+          <a key={item.id} href={`#${item.id}`} className="nav-link">
             <Icon name={item.icon} />
             <span>{item.label}</span>
-            {item.badge !== undefined && <span className="badge">{item.badge}</span>}
-          </button>
+            {item.badge && <span className="badge">{item.badge}</span>}
+          </a>
         ))}
       </nav>
 

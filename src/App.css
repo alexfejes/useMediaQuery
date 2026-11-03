@@ -1,13 +1,18 @@
 /*
   Note: there are deliberately NO @media rules in this file.
-  Every layout decision is fixed-size, so without JS awareness of the
-  viewport the dashboard overflows and clips on narrow windows.
+  The desktop sidebar is a fixed 280px, so without JS awareness of the
+  viewport it eats most of a phone screen and the content gets crushed.
 */
 
-.shell {
+#root {
   display: flex;
   height: 100vh;
   overflow: hidden;
+}
+
+/* Mobile layout stacks the top bar above the content. */
+#root:has(.mobile-bar) {
+  flex-direction: column;
 }
 
 .muted {
@@ -113,10 +118,6 @@
 
 /* ---------- Mobile top bar + drawer ---------- */
 
-.shell-mobile {
-  flex-direction: column;
-}
-
 .mobile-bar {
   display: flex;
   align-items: center;
@@ -127,24 +128,11 @@
   border-bottom: 1px solid var(--border);
 }
 
-.mobile-title {
-  font-weight: 600;
-  color: var(--text-h);
-}
-
 .drawer-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
   z-index: 10;
-
-  &.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
 }
 
 .drawer {
@@ -157,19 +145,14 @@
   padding: 16px;
   box-sizing: border-box;
   background: var(--surface);
-  transform: translateX(-100%);
-  transition: transform 0.25s ease;
+  animation: slide-in 0.25s ease;
   z-index: 11;
-
-  &.is-open {
-    transform: translateX(0);
-  }
 }
 
-.drawer-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
 }
 
 /* ---------- Main content ---------- */
@@ -184,21 +167,22 @@
   gap: 24px;
 }
 
-.shell-mobile .content {
+.mobile-bar ~ .content {
   padding: 16px;
   gap: 16px;
 }
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  white-space: nowrap;
+  gap: 16px;
 }
 
 .toolbar-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
@@ -207,7 +191,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 320px;
+  flex: 1 1 240px;
   padding: 8px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -260,16 +244,22 @@
 
 .stat-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
 .stat-card,
 .panel {
+  min-width: 0;
   padding: 20px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.panel {
+  overflow-x: auto;
 }
 
 .stat-card {
@@ -319,37 +309,6 @@
   tr:last-child td {
     border-bottom: 0;
   }
-}
-
-.order-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  li {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  li:last-child {
-    border-bottom: 0;
-  }
-  li > div {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-  strong {
-    color: var(--text-h);
-  }
-}
-
-.order-meta {
-  align-items: flex-end;
-  flex-shrink: 0;
 }
 
 .status {

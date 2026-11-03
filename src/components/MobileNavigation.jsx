@@ -1,78 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { navItems } from '../data'
 import Icon from './Icon'
 
-// Streamlined mobile view: a slim top bar, with the nav tucked into a slide-out drawer.
-export default function MobileNavigation({ activeId, onSelect }) {
+// Streamlined mobile view: a slim top bar with a menu button that opens a drawer.
+export default function MobileNavigation() {
   const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    if (!open) return
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') setOpen(false)
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [open])
-
-  const active = navItems.find((item) => item.id === activeId)
-
   return (
-    <>
-      <header className="mobile-bar">
-        <button
-          type="button"
-          className="icon-btn"
-          aria-label="Open menu"
-          aria-expanded={open}
-          onClick={() => setOpen(true)}
-        >
-          <Icon name="menu" />
-        </button>
-        <span className="mobile-title">{active?.label}</span>
+    <header className="mobile-bar">
+      <div className="brand">
         <span className="brand-mark">P</span>
-      </header>
+        <span className="brand-name">Pulseboard</span>
+      </div>
+      <button type="button" className="icon-btn" aria-label="Open menu" onClick={() => setOpen(true)}>
+        <Icon name="menu" />
+      </button>
 
-      <div
-        className={`drawer-backdrop${open ? ' is-open' : ''}`}
-        onClick={() => setOpen(false)}
-      />
-      <aside className={`drawer${open ? ' is-open' : ''}`} aria-hidden={!open}>
-        <div className="drawer-head">
-          <div className="brand">
-            <span className="brand-mark">P</span>
-            <span className="brand-name">Pulseboard</span>
-          </div>
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label="Close menu"
-            tabIndex={open ? 0 : -1}
-            onClick={() => setOpen(false)}
-          >
-            <Icon name="close" />
-          </button>
-        </div>
-        <nav className="sidebar-nav" aria-label="Main">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={`nav-link${item.id === activeId ? ' is-active' : ''}`}
-              aria-current={item.id === activeId ? 'page' : undefined}
-              tabIndex={open ? 0 : -1}
-              onClick={() => {
-                onSelect(item.id)
-                setOpen(false)
-              }}
-            >
-              <Icon name={item.icon} />
-              <span>{item.label}</span>
-              {item.badge !== undefined && <span className="badge">{item.badge}</span>}
+      {open && (
+        <>
+          <div className="drawer-backdrop" onClick={() => setOpen(false)} />
+          <nav className="drawer">
+            <button type="button" className="icon-btn" aria-label="Close menu" onClick={() => setOpen(false)}>
+              <Icon name="close" />
             </button>
-          ))}
-        </nav>
-      </aside>
-    </>
+            {navItems.map((item) => (
+              <a key={item.id} href={`#${item.id}`} className="nav-link" onClick={() => setOpen(false)}>
+                <Icon name={item.icon} />
+                <span>{item.label}</span>
+                {item.badge && <span className="badge">{item.badge}</span>}
+              </a>
+            ))}
+          </nav>
+        </>
+      )}
+    </header>
   )
 }
